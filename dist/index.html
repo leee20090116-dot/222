@@ -1,76 +1,133 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>test</title>
-  <link rel="stylesheet" href="./style.css">
+<meta charset="UTF-8">
+<title>0419的海洋計算機</title>
 
+<style>
+
+body{
+    background: linear-gradient(to bottom,#0f2027,#2c5364);
+    font-family: Arial;
+    text-align:center;
+    color:white;
+}
+
+/* 計算機外框 */
+.calculator{
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding:20px;
+    border-radius:20px;
+    width:260px;
+    margin:auto;
+    margin-top:80px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+/* 顯示器 */
+#display{
+    width:220px;
+    height:50px;
+    font-size:22px;
+    text-align:right;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:none;
+    padding-right:10px;
+}
+
+/* 按鈕 */
+button{
+    width:50px;
+    height:50px;
+    margin:5px;
+    border:none;
+    border-radius:50%;
+    font-size:18px;
+    background:#4fc3f7;
+    color:white;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#29b6f6;
+    transform:scale(1.1);
+}
+
+/* 特殊按鈕 */
+.equal{
+    background:#00acc1;
+}
+
+.clear{
+    background:#ef5350;
+}
+
+</style>
 </head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>0419的簡易計算機</title>
-    <style>
-        input[type="button"] {
-            width: 50px;
-            height: 50px;
-        }
-        input[type="text"] {
-            width: 200px;
-            height: 50px;
-        }
-    </style>
-</head>
-<body>
-    <h1>0419的簡易計算機</h1>
-  <hr>
-   <hr>
-     <hr>
-    <input type="text" id="display" readonly>
-    <br>
-    <input type="button" value="1" onclick="appendToDisplay('1')">
-    <input type="button" value="2" onclick="appendToDisplay('2')">
-    <input type="button" value="3" onclick="appendToDisplay('3')">
-    <input type="button" value="+" onclick="appendToDisplay('+')">
-    <br>
-    <input type="button" value="4" onclick="appendToDisplay('4')">
-    <input type="button" value="5" onclick="appendToDisplay('5')">
-    <input type="button" value="6" onclick="appendToDisplay('6')">
-    <input type="button" value="-" onclick="appendToDisplay('-')">
-    <br>
-    <input type="button" value="7" onclick="appendToDisplay('7')">
-    <input type="button" value="8" onclick="appendToDisplay('8')">
-    <input type="button" value="9" onclick="appendToDisplay('9')">
-    <input type="button" value="*" onclick="appendToDisplay('*')">
-    <br>
-    <input type="button" value="0" onclick="appendToDisplay('0')">
-    <input type="button" value="C" onclick="clearDisplay()">
-    <input type="button" value="=" onclick="calculate()">
-    <input type="button" value="/" onclick="appendToDisplay('/')">
-    <br>
-    <script>
-        function appendToDisplay(value) {
-            document.getElementById("display").value += value;
-        }
 
-        function clearDisplay() {
-            document.getElementById("display").value = '';
-        }
+<body>
 
-        function calculate() {
-            var expression = document.getElementById("display").value;
-            try {
-                document.getElementById("display").value = eval(expression);
-            } catch (e) {
-                document.getElementById("display").value = 'Error';
-            }
-        }
-    </script>
-</body>
-</html>
-<!-- partial -->
-  
+<div class="calculator">
+
+<h2>🌊 海洋計算機</h2>
+
+<input type="text" id="display" readonly>
+
+<br>
+
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+<button onclick="append('3')">3</button>
+<button onclick="append('+')">+</button>
+
+<br>
+
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button>
+<button onclick="append('-')">-</button>
+
+<br>
+
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button>
+<button onclick="append('*')">×</button>
+
+<br>
+
+<button onclick="append('0')">0</button>
+<button class="clear" onclick="clearDisplay()">C</button>
+<button class="equal" onclick="calculate()">=</button>
+<button onclick="append('/')">÷</button>
+
+</div>
+
+<script>
+
+function append(value){
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay(){
+    document.getElementById("display").value="";
+}
+
+function calculate(){
+    let exp=document.getElementById("display").value;
+
+    try{
+        document.getElementById("display").value=eval(exp);
+    }
+    catch{
+        document.getElementById("display").value="Error";
+    }
+}
+
+</script>
+
 </body>
 </html>
